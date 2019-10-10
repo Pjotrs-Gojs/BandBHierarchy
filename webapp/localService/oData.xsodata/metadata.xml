@@ -1,0 +1,37 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="com.bbnew.Service.oData">
+			<EntityType Name="BarsType">
+				<Key><PropertyRef Name="BAR_ID"/></Key><Property Name="PHONE" Type="Edm.String" MaxLength="255"/><Property Name="STREET" Type="Edm.String" MaxLength="255"/><Property Name="BAR_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="BAR_NAME" Type="Edm.String" MaxLength="80"/><Property Name="REITING" Type="Edm.Int32"/><Property Name="CITY" Type="Edm.String" MaxLength="255"/><Property Name="COUNTRY" Type="Edm.String" MaxLength="255"/><Property Name="PERCENT" Type="Edm.Decimal" Precision="3" Scale="2"/><Property Name="QUANTITY_1" Type="Edm.Int32"/><NavigationProperty Name="BarsRef" Relationship="com.bbnew.Service.oData.BarsToBarsDetailType" FromRole="BarsPrincipal"
+					ToRole="BarsAndBeersDependent"/><NavigationProperty Name="PersonalRef" Relationship="com.bbnew.Service.oData.BarsToPersonalType" FromRole="BarsPrincipal"
+					ToRole="PersonalDependent"/><NavigationProperty Name="CountRef" Relationship="com.bbnew.Service.oData.BarsToCountType" FromRole="BarsPrincipal" ToRole="CountDependent"/></EntityType>
+			<EntityType Name="CountType">
+				<Key><PropertyRef Name="POSITION"/></Key><Property Name="POSITION" Type="Edm.String" Nullable="false" MaxLength="255"/><Property Name="BAR_ID" Type="Edm.String" MaxLength="80"/><Property Name="COUNT" Type="Edm.Decimal" Precision="18" Scale="0"/></EntityType>
+			<EntityType Name="CityType">
+				<Key><PropertyRef Name="CITY"/></Key><Property Name="COUNTRY" Type="Edm.String" MaxLength="255"/><Property Name="CITY" Type="Edm.String" Nullable="false" MaxLength="255"/><Property Name="BAR_NAME" Type="Edm.Decimal" Precision="18" Scale="0"/><NavigationProperty Name="CityRef" Relationship="com.bbnew.Service.oData.CityToBarsType" FromRole="CityPrincipal" ToRole="BarsDependent"/></EntityType>
+			<EntityType Name="CountryType">
+				<Key><PropertyRef Name="COUNTRY"/></Key><Property Name="COUNTRY" Type="Edm.String" Nullable="false" MaxLength="255"/><Property Name="CITY" Type="Edm.String" MaxLength="255"/><Property Name="BAR_NAME" Type="Edm.Decimal" Precision="18" Scale="0"/><NavigationProperty Name="CountryRef" Relationship="com.bbnew.Service.oData.CountryToCityType" FromRole="CountryPrincipal"
+					ToRole="CityDependent"/></EntityType>
+			<EntityType Name="BarsAndBeersType">
+				<Key><PropertyRef Name="BAR_ID"/><PropertyRef Name="BEER_ID"/></Key><Property Name="BAR_NAME" Type="Edm.String" MaxLength="80"/><Property Name="BAR_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="BEER_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="BEER_NAME" Type="Edm.String" MaxLength="80"/><Property Name="PRICE" Type="Edm.Decimal" Precision="15" Scale="2"/><Property Name="QUANTITY" Type="Edm.Int32"/><Property Name="CURRENCY" Type="Edm.String" MaxLength="3"/></EntityType>
+			<EntityType Name="BarsDetailsType">
+				<Key><PropertyRef Name="BAR_ID"/></Key><Property Name="BAR_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="BAR_NAME" Type="Edm.String" MaxLength="80"/><Property Name="COUNTRY" Type="Edm.String" MaxLength="255"/><Property Name="CITY" Type="Edm.String" MaxLength="255"/><Property Name="STREET" Type="Edm.String" MaxLength="255"/><Property Name="PHONE" Type="Edm.String" MaxLength="255"/><Property Name="REITING" Type="Edm.Int32"/></EntityType>
+			<EntityType Name="PersonalType">
+				<Key><PropertyRef Name="BAR_ID"/><PropertyRef Name="PERSONAL_ID"/></Key><Property Name="BAR_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="PERSONAL_ID" Type="Edm.String" Nullable="false" MaxLength="80"/><Property Name="NAME" Type="Edm.String" MaxLength="255"/><Property Name="POSITION" Type="Edm.String" MaxLength="255"/><Property Name="EMAIL" Type="Edm.String" MaxLength="255"/></EntityType>
+			<Association Name="BarsToBarsDetailType"><End Type="com.bbnew.Service.oData.BarsType" Role="BarsPrincipal" Multiplicity="1"/><End Type="com.bbnew.Service.oData.BarsAndBeersType" Role="BarsAndBeersDependent" Multiplicity="*"/></Association>
+			<Association Name="BarsToPersonalType"><End Type="com.bbnew.Service.oData.BarsType" Role="BarsPrincipal" Multiplicity="1"/><End Type="com.bbnew.Service.oData.PersonalType" Role="PersonalDependent" Multiplicity="*"/></Association>
+			<Association Name="BarsToCountType"><End Type="com.bbnew.Service.oData.BarsType" Role="BarsPrincipal" Multiplicity="1"/><End Type="com.bbnew.Service.oData.CountType" Role="CountDependent" Multiplicity="*"/></Association>
+			<Association Name="CountryToCityType"><End Type="com.bbnew.Service.oData.CountryType" Role="CountryPrincipal" Multiplicity="1"/><End Type="com.bbnew.Service.oData.CityType" Role="CityDependent" Multiplicity="*"/></Association>
+			<Association Name="CityToBarsType"><End Type="com.bbnew.Service.oData.CityType" Role="CityPrincipal" Multiplicity="1"/><End Type="com.bbnew.Service.oData.BarsType" Role="BarsDependent" Multiplicity="*"/></Association>
+			<EntityContainer Name="oData" m:IsDefaultEntityContainer="true"><EntitySet Name="Bars" EntityType="com.bbnew.Service.oData.BarsType"/><EntitySet Name="Count" EntityType="com.bbnew.Service.oData.CountType"/><EntitySet Name="City" EntityType="com.bbnew.Service.oData.CityType"/><EntitySet Name="Country" EntityType="com.bbnew.Service.oData.CountryType"/><EntitySet Name="BarsAndBeers" EntityType="com.bbnew.Service.oData.BarsAndBeersType"/><EntitySet Name="BarsDetails" EntityType="com.bbnew.Service.oData.BarsDetailsType"/><EntitySet Name="Personal" EntityType="com.bbnew.Service.oData.PersonalType"/>
+				<AssociationSet Name="BarsToBarsDetail" Association="com.bbnew.Service.oData.BarsToBarsDetailType"><End Role="BarsPrincipal" EntitySet="Bars"/><End Role="BarsAndBeersDependent" EntitySet="BarsAndBeers"/></AssociationSet>
+				<AssociationSet Name="BarsToPersonal" Association="com.bbnew.Service.oData.BarsToPersonalType"><End Role="BarsPrincipal" EntitySet="Bars"/><End Role="PersonalDependent" EntitySet="Personal"/></AssociationSet>
+				<AssociationSet Name="BarsToCount" Association="com.bbnew.Service.oData.BarsToCountType"><End Role="BarsPrincipal" EntitySet="Bars"/><End Role="CountDependent" EntitySet="Count"/></AssociationSet>
+				<AssociationSet Name="CountryToCity" Association="com.bbnew.Service.oData.CountryToCityType"><End Role="CountryPrincipal" EntitySet="Country"/><End Role="CityDependent" EntitySet="City"/></AssociationSet>
+				<AssociationSet Name="CityToBars" Association="com.bbnew.Service.oData.CityToBarsType"><End Role="CityPrincipal" EntitySet="City"/><End Role="BarsDependent" EntitySet="Bars"/></AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

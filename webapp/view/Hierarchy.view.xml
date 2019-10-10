@@ -1,0 +1,32 @@
+<mvc:View
+    controllerName="com.BandBHierarchy.BandBHierarchy.controller.Hierarchy"
+    xmlns="sap.ui.table"
+    xmlns:m="sap.m"
+    xmlns:mvc="sap.ui.core.mvc">
+	<m:Page id="page" title="TREE TABLE">
+		<m:content>
+			<TreeTable id="treeTable" selectionMode="Single" enableColumnReordering="false" 
+				rows="{ path : '/Hierarchy', 
+						parameters : { countMode: 'Inline', 
+						numberOfExpandedLevels: 1,
+						treeAnnotationProperties : { 
+						hierarchyLevelFor : 'LEVEL', 
+						hierarchyNodeFor : 'ORDINAL', 
+						hierarchyParentNodeFor : 'PRED_NODE', 
+						hierarchyDrillStateFor : 'IS_LEAF' } } }">
+				<columns>
+					<Column label="Description">
+						<template>
+							<m:Text text="{RESULT_NODE_NAME}" wrapping="false"/>
+						</template>
+					</Column>
+					<Column label="HierarchyLevel">
+		                <template>
+		                    <m:Text text="{LEVEL}" wrapping="false" />
+		                </template>
+		            </Column>
+				</columns>
+			</TreeTable>
+		</m:content>
+	</m:Page>
+</mvc:View>
