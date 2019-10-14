@@ -44,29 +44,6 @@ sap.ui.define([
 
 					oModelJson.setData(aResults);
 					this.getView().setModel(oModelJson, "oJSONModel");
-				// var oModel1 = this.getView().getModel();
-				// var oModelJson1 = new sap.ui.model.json.JSONModel();
-				// 	const aConvertedResponse = oData.results.map(oRow => {
-				// 		if (oRow.PRED_NODE !== null) {
-				// 			const vParent = oData.results.find(x => x.RESULT_NODE === oRow.PRED_NODE);
-				// 			oRow.PRED_NODE = (vParent) ? vParent.ORDINAL : null;
-				// 		}
-				// 		if (oRow.IS_LEAF === 0) {
-				// 			var vLeaf = "expanded";
-				// 			oRow.IS_LEAF = vLeaf;
-				// 		}else{
-				// 			vLeaf = "leaf";
-				// 			oRow.IS_LEAF = vLeaf;
-				// 		};
-				// 	// var DrillState = oRow.IS_LEAF;
-				// 	// var ParentNode = oRow.PRED_NODE;
-				// 	// var Node = oRow.ORDINAL;
-				// 	// var Level = oRow.LEVEL;
-				// 	return oRow;
-				// 	});
-
-				// 	oModelJson1.setData(aConvertedResponse);
-				// 	this.getView().setModel(oModelJson1, "oJSONModel1");
 				}.bind(this),
 				error: function (response) {}
 			});

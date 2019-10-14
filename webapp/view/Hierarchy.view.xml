@@ -10,21 +10,21 @@
 			</Column>
 		</columns>
 	</TreeTable>
-	<TreeTable title="ODATA" id="treeTable2" selectionMode="Single" enableColumnReordering="false"
-		rows="{ path : '/Hierarchy',
-						parameters : { countMode: 'Inline', 
-						numberOfExpandedLevels : 0,
-						treeAnnotationProperties : { 
-						hierarchyLevelFor : 'LEVEL', 
-						hierarchyNodeFor : 'ORDINAL', 
-						hierarchyParentNodeFor : 'PRED_NODE', 
-						hierarchyDrillStateFor : 'IS_LEAF' } } }">
-		<columns>
-			<Column label="Description">
-				<template>
-					<m:Text text="{RESULT_NODE_NAME}" wrapping="false"/>
-				</template>
-			</Column>
-		</columns>
-	</TreeTable>
+	<!--<TreeTable title="ODATA" id="treeTable2" selectionMode="Single" enableColumnReordering="false"-->
+	<!--	rows="{ path : 'oDataModel>/',-->
+	<!--					parameters : { countMode: 'Inline', -->
+	<!--					numberOfExpandedLevels : 0,-->
+	<!--					treeAnnotationProperties : { -->
+	<!--					hierarchyLevelFor : 'LEVEL', -->
+	<!--					hierarchyNodeFor : 'ORDINAL', -->
+	<!--					hierarchyParentNodeFor : 'PRED_NODE', -->
+	<!--					hierarchyDrillStateFor : 'IS_LEAF' } } }">-->
+	<!--	<columns>-->
+	<!--		<Column label="Description">-->
+	<!--			<template>-->
+	<!--				<m:Text text="{RESULT_NODE_NAME}" wrapping="false"/>-->
+	<!--			</template>-->
+	<!--		</Column>-->
+	<!--	</columns>-->
+	<!--</TreeTable>-->
 </mvc:View>
